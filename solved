@@ -1,0 +1,118 @@
+Problem solved after 6 days of trying
+
+
+index.jsp
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Home page</title>
+</head>
+<body>
+
+<form action="add" method="post">
+
+first number  <input type ="text" name="num1"><br>
+second number <input type ="text" name="num2"> <br>
+<input type="submit">
+
+
+	
+
+</form>
+
+</body>
+</html>
+
+
+FoodCart.jsp
+
+package com.sumon;
+
+import java.io.IOException;
+
+
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/add")
+public class FoodCart extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		int x=12;
+		request.setAttribute("key1", x);
+		
+		RequestDispatcher dispatcher=request.getRequestDispatcher("/login");
+		dispatcher.forward(request, response);
+		
+	}
+
+}
+
+
+
+login.jsp
+
+
+package com.sumon;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/login")
+public class login extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int z=(Integer) request.getAttribute("key1");
+		z=z*z;				
+		PrintWriter out=response.getWriter();
+		out.print("multiplication is "+z+"\n");
+		
+		
+		
+	}
+
+}
+
+
+
+xml
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<element>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  
+  <display-name>foodcart</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
+ 
+  
+  
+</web-app>
+
+</element>
